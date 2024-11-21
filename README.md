@@ -6,7 +6,7 @@ Hello. I am **Selvaprakash P**, a dedicated **Full Stack Developer** with good k
 - **Programming Languages**: Python, JavaScript, HTML, CSS
 - **Frameworks**: Django, ReactJS, NodeJS
 - **Databases**: MySQL
-- **Tools & Technologies**: Git, GitHub, OpenCV
+- **Tools & Technologies**: Git, GitHub, OpenCV, Amazon Sagemaker
 
 ## Projects
 
