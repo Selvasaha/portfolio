@@ -37,8 +37,5 @@ Hello. I am **Selvaprakash P**, a dedicated **Full Stack Developer** with good k
 - **LinkedIn**: [Selvaprakash P LinkedIn](https://www.linkedin.com/in/selvaprakash-p/)
 - **GitHub**: [Selvasaha GitHub](https://github.com/Selvasaha)
 
-## GitHub Stats
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=Selvasaha&show_icons=true&hide_title=true)
-
 ## Connect with Me
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue)](https://www.linkedin.com/in/selvaprakash-p/)
