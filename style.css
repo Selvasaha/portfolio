@@ -106,7 +106,9 @@ p {
     font-size: 1.5rem;
     color: #333;
 }
-
+.project:hover, .experience-item:hover{
+    transform: scale(1.007);
+}
 /* Experience Section */
 #experience .experience-item {
     background-color: #f9f9f9;
