@@ -13,7 +13,7 @@ body {
 /* Header Styling */
 header {
     background: #000;
-    padding: 20px 0; /* Reduced header height */
+    padding: 10px 0; /* Reduced height further */
     text-align: center;
     box-shadow: 0 10px 30px rgba(0, 255, 255, 0.1);
     position: fixed;
