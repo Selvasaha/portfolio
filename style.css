@@ -81,15 +81,6 @@ header nav ul li a:hover {
     color: #ff00ff;
 }
 
-#about {
-    margin-top: 100px; /* Push down content below the header */
-    padding: 60px 20px;
-    text-align: center;
-    background: #222;
-    position: relative;
-    max-width: 1200px;
-    margin: 0 auto;
-}
 
 
 /* Section Styling */
@@ -100,6 +91,7 @@ header nav ul li a:hover {
     position: relative;
     max-width: 1200px; /* Limiting max-width for center alignment */
     margin: 0 auto; /* Centering the content */
+    margin-top: 100px;
 }
 
 /* Skill Cards */
