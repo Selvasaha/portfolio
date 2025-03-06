@@ -15,7 +15,6 @@ body {
     overflow-x: hidden;
     animation: bgAnimation 10s infinite alternate;
     text-align: center;
-    padding-top: 130px;
 }
 
 @keyframes bgAnimation {
@@ -111,6 +110,11 @@ h2 {
     text-transform: uppercase;
     transition: 0.3s;
     cursor: pointer;
+}
+main{
+  margin-top: 100px;
+  padding-top: 75px;
+  position: relative;
 }
 
 .skill:hover {
