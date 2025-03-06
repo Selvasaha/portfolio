@@ -82,7 +82,8 @@ nav a:hover::after {
 }
 
 .section {
-    padding: 20px;
+    padding: 0;
+    padding-top: 80px;
     animation: fadeIn 1s ease-in-out;
 }
 
