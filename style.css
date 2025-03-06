@@ -1,221 +1,168 @@
-/* General Styling */
-body {
-    font-family: 'Orbitron', sans-serif;
+/* Cyberpunk Neon Futuristic CSS */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
     margin: 0;
     padding: 0;
-    background: #111;
-    color: #fff;
-    line-height: 1.6;
-    overflow-x: hidden;
-    padding-top: 80px; /* Adjust for header height */
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
-/* Header Styling */
-header {
-    background: #000;
-    padding: 10px 0; /* Reduced height */
+body {
+    background: #0d0d0d;
+    color: #fff;
+    overflow-x: hidden;
+    animation: bgAnimation 10s infinite alternate;
     text-align: center;
-    box-shadow: 10px 0 30px rgba(0, 255, 255, 0.1); /* Adjusted box shadow to look better on left */
+    padding-top: 130px;
+}
+
+@keyframes bgAnimation {
+    0% { background-color: #0d0d0d; }
+    100% { background-color: #1a1a1a; }
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 30px;
+}
+
+header {
     position: fixed;
     top: 0;
-    left: 0; /* Positions the header on the left */
-    height: 100%; /* Makes header take full height of the screen */
-    width: 200px; /* Adjust width as needed */
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 15px cyan;
     z-index: 1000;
-    overflow-y: auto; /* Ensures content scrolls inside the header if it exceeds the screen height */
+    transition: all 0.3s ease-in-out;
 }
 
-header h1 {
-    font-size: 2.5rem;
-    color: #0ff;
-    text-transform: uppercase;
-    text-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
-    margin: 0;
+h1 {
+    font-size: 2em;
+    color: cyan;
+    text-shadow: 0 0 10px cyan;
 }
 
-header h2 {
-    font-size: 1.5rem;
-    color: #ff00ff;
-    margin-top: 10px;
-    text-shadow: 0 0 15px rgba(255, 0, 255, 0.7);
-}
-
-header nav ul {
+nav ul {
     list-style: none;
+    display: flex;
+    gap: 20px;
     padding: 0;
-    margin-top: 20px;
 }
 
-header nav ul li {
-    display: block; /* Stack list items vertically */
-    margin: 20px 0; /* Space between items */
-}
-
-header nav ul li a {
-    color: #0ff;
+nav a {
     text-decoration: none;
-    font-size: 1.3rem;
-    text-transform: uppercase;
-    font-weight: bold;
+    color: white;
+    font-size: 1.2em;
+    transition: 0.3s;
     position: relative;
-    z-index: 10;
-    transition: 0.3s ease;
 }
 
-header nav ul li a::after {
+nav a::after {
     content: '';
     position: absolute;
     width: 100%;
     height: 2px;
-    background: #ff00ff;
-    bottom: 0;
+    bottom: -5px;
     left: 0;
+    background: cyan;
     transform: scaleX(0);
-    transform-origin: bottom right;
-    transition: transform 0.25s ease-out;
+    transition: transform 0.3s;
 }
 
-header nav ul li a:hover::after {
+nav a:hover::after {
     transform: scaleX(1);
-    transform-origin: bottom left;
 }
 
-header nav ul li a:hover {
-    color: #ff00ff;
-}
-
-
-
-
-/* Section Styling */
 .section {
-    padding: 60px 20px;
-    text-align: center;
-    background: #222;
-    position: relative;
-    max-width: 1200px; /* Limiting max-width for center alignment */
-    margin: 0 auto; /* Centering the content */
-    margin-top: 100px;
+    padding: 80px 20px;
+    animation: fadeIn 1s ease-in-out;
 }
 
-/* Skill Cards */
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+h2 {
+    font-size: 2rem;
+    text-shadow: 0px 0px 10px cyan;
+}
+
 .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 30px;
-    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
 }
 
 .skill {
-    background: #333;
-    padding: 40px;
-    text-align: center;
-    border-radius: 10px;
-    box-shadow: 0 5px 20px rgba(0, 255, 255, 0.3);
-    position: relative;
-    z-index: 0;
-    transition: all 0.3s ease;
+    padding: 10px 20px;
+    border: 2px solid cyan;
+    border-radius: 5px;
+    text-transform: uppercase;
+    transition: 0.3s;
+    cursor: pointer;
 }
 
 .skill:hover {
-    background: linear-gradient(45deg, #ff00ff, #0ff);
-    box-shadow: 0 15px 50px rgba(255, 0, 255, 0.6);
-    transform: translateY(-5px);
+    background: cyan;
+    color: black;
+    box-shadow: 0px 0px 20px cyan;
 }
 
-.skill h3 {
-    font-size: 1.5rem;
-    color: #fff;
-    margin: 0;
-    text-transform: uppercase;
+.project, .experience-item {
+    border-left: 4px solid cyan;
+    padding: 20px;
+    margin: 20px auto;
+    width: 60%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    transition: 0.3s;
+    border-radius: 8px;
 }
 
-.skill p {
-    color: #b3b3b3;
-    font-size: 1.1rem;
-    margin-top: 10px;
+.project:hover, .experience-item:hover {
+    box-shadow: 0 0 20px cyan;
 }
 
-/* Project Section */
-.project {
-    background: #333;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0, 255, 255, 0.1);
-    transition: all 0.3s ease;
-}
-
-.project:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 50px rgba(0, 255, 255, 0.4);
-}
-
-.project h3 {
-    color: #0ff;
-    font-size: 2rem;
-}
-
-.project p {
-    color: #ccc;
-    font-size: 1.2rem;
-}
-
-/* Experience Section */
-.experience-item {
-    background: #333;
-    padding: 30px;
-    margin-bottom: 40px;
-    border-radius: 10px;
-    box-shadow: 0 10px 20px rgba(0, 255, 255, 0.2);
-    transition: all 0.3s ease;
-}
-
-.experience-item:hover {
-    box-shadow: 0 15px 50px rgba(0, 255, 255, 0.4);
-}
-
-.experience-item h3 {
-    color: #ff00ff;
-    font-size: 1.8rem;
-}
-
-.experience-item p {
-    color: #ccc;
-}
-
-/* Footer */
 footer {
-    background: #111;
-    padding: 40px 20px;
-    text-align: center;
-    color: #fff;
-    box-shadow: 0 -10px 30px rgba(0, 255, 255, 0.1);
-    margin-top: 50px;
+    padding: 20px;
+    background: black;
+    color: cyan;
+    font-size: 1rem;
+    border-radius: 10px;
+    margin-top: 20px;
 }
 
-footer p {
-    font-size: 1.2rem;
-    color: #b3b3b3;
+/* 3D Neon Side Elements */
+.side-bar {
+    position: fixed;
+    top: 0;
+    height: 100%;
+    width: 10px;
+    background: cyan;
+    box-shadow: 0 0 20px cyan;
+    animation: neonGlow 1.5s infinite alternate;
 }
 
-/* Neon Animation for Heading */
-@keyframes neon-glow {
-    0% {
-        text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 15px #ff00ff, 0 0 20px #ff00ff, 0 0 25px #ff00ff;
-    }
-    50% {
-        text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff, 0 0 40px #00ffff, 0 0 50px #00ffff;
-    }
-    100% {
-        text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 15px #ff00ff, 0 0 20px #ff00ff, 0 0 25px #ff00ff;
-    }
+@keyframes neonGlow {
+    0% { box-shadow: 0 0 10px cyan; }
+    100% { box-shadow: 0 0 30px cyan; }
 }
 
-h1 {
-    animation: neon-glow 1.5s ease-in-out infinite alternate;
+.side-left {
+    left: 10px;
 }
 
-/* Smooth Scroll for Navigation */
-html {
-    scroll-behavior: smooth;
+.side-right {
+    right: 10px;
 }
