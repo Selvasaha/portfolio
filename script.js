@@ -18,16 +18,15 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Theme toggle functionality
-    const themeToggleBtn = document.getElementById("theme-toggle");
+    const themeToggleBtn = document.getElementById("theme-toggle-btn");
 
-    themeToggleBtn.addEventListener("click", () => {
-        document.body.classList.toggle("dark-theme");
-
-        // Update button text based on theme
-        if (document.body.classList.contains("dark-theme")) {
-            themeToggleBtn.innerText = "🌞";  // Switch to light mode
-        } else {
-            themeToggleBtn.innerText = "🌙";  // Switch to dark mode
-        }
-    });
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener("click", () => {
+            document.body.classList.toggle("dark-theme");
+            document.querySelector("header").classList.toggle("dark-theme");
+            document.querySelectorAll("nav a").forEach(link => link.classList.toggle("dark-theme"));
+            document.querySelectorAll(".project, .experience-item").forEach(item => item.classList.toggle("dark-theme"));
+            document.querySelectorAll(".side-bar").forEach(side => side.classList.toggle("dark-theme"));
+        });
+    }
 });
