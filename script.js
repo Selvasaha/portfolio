@@ -16,4 +16,18 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     });
+
+    // Theme toggle functionality
+    const themeToggleBtn = document.getElementById("theme-toggle");
+
+    themeToggleBtn.addEventListener("click", () => {
+        document.body.classList.toggle("dark-theme");
+
+        // Update button text based on theme
+        if (document.body.classList.contains("dark-theme")) {
+            themeToggleBtn.innerText = "🌞";  // Switch to light mode
+        } else {
+            themeToggleBtn.innerText = "🌙";  // Switch to dark mode
+        }
+    });
 });
