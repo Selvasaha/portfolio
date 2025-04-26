@@ -189,6 +189,33 @@ nav a {
     background: cyan;
 }
 
+/* Light Theme Styles */
+body {
+    background: #ffffff;
+    color: #000;
+    transition: background 0.3s, color 0.3s, all 0.3s ease;
+}
+
+header {
+    background: #f0f0f0;
+    color: #000;
+}
+
+nav a {
+    color: #000;
+}
+
+.side-bar {
+    background: #cccccc;
+}
+
+/* Project and Experience Items */
+.project, .experience-item {
+    background: #f4f4f4;
+    border-left: 4px solid #ccc;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
 /* Dark Theme Styles */
 body.dark-theme {
     background: #0d0d0d;
@@ -196,31 +223,26 @@ body.dark-theme {
 }
 
 header.dark-theme {
-    background: rgba(0, 0, 0, 0.8);
+    background: #1c1c1c;
     color: #fff;
 }
 
 nav.dark-theme a {
-    color: white;
+    color: #fff;
 }
 
 .side-bar.dark-theme {
     background: cyan;
 }
 
-.project, .experience-item {
+/* Project and Experience Items in Dark Mode */
+.project.dark-theme, .experience-item.dark-theme {
     background: rgba(255, 255, 255, 0.1);
     border-left: 4px solid cyan;
     box-shadow: 0 0 20px cyan;
-    transition: background-color 0.3s, box-shadow 0.3s;
 }
 
-.project.dark-theme, .experience-item.dark-theme {
-    background: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 20px cyan;
-}
-
-/* Add more dark theme styles as per your design preference */
+/* Button Styles */
 .theme-toggle-btn {
     font-size: 1.5rem;
     background: none;
@@ -236,4 +258,3 @@ nav.dark-theme a {
     background-color: cyan;
     color: black;
 }
-
