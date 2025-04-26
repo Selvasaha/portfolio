@@ -43,14 +43,23 @@ I am a **Software Developer** passionate about creating innovative solutions. I 
 
 ## Experience
 
+### Software Engineer Intern
+**Admindroid**  
+*Chennai, Tamil Nadu, India*  
+**April 2025 - Present**
+
+- Contributing to the development of innovative software solutions.
+- Working with a variety of technologies to build scalable and efficient applications.
+- Collaborating with cross-functional teams to design, develop, and optimize products.
+
 ### Analyst
 **Objectways Technologies**  
 *Coimbatore, Tamil Nadu, India*  
-**May 2024 - Present**
+**May 2024 - March 2025**
 
-- Annotating and analyzing AI data for training and feeding into AI systems.
-- Handling diverse types of data, including text, image, video, and audio.
-- Collaborating with cross-functional teams to ensure accurate data processing and system optimization.
+- Annotated and analyzed AI data for training and feeding into AI systems.
+- Handled diverse types of data, including text, image, video, and audio.
+- Collaborated with cross-functional teams to ensure accurate data processing and system optimization.
 
 ### Data Scientist Intern
 **Digital Garage**  
