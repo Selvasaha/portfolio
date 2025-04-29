@@ -1,4 +1,4 @@
-// Smooth Scrolling Effect for Navigation Links
+// Smooth Scrolling & Header Shrink Logic
 document.addEventListener("DOMContentLoaded", () => {
     const navLinks = document.querySelectorAll("nav ul li a");
     const header = document.querySelector("header");
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Shrink header on scroll
+    // Shrink and align header elements on scroll
     window.addEventListener("scroll", () => {
         if (window.scrollY > 50) {
             header.classList.add("shrink");
