@@ -32,53 +32,53 @@ header {
     left: 0;
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    padding: 20px 40px;
+    padding: 40px 20px;
     background: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(10px);
     box-shadow: 0 0 15px cyan;
     z-index: 1000;
     transition: all 0.3s ease-in-out;
+    flex-direction: column;
+    gap: 10px;
 }
 
-header .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.brand {
+.header-content {
     text-align: center;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.4s ease-in-out;
 }
 
-h1 {
-    font-size: 2em;
+.header-content h1 {
+    font-size: 2.2em;
     color: cyan;
     text-shadow: 0 0 10px cyan;
-    transition: font-size 0.3s;
+    transition: all 0.3s ease;
 }
 
-h2 {
+.header-content p {
     font-size: 1.2em;
-    color: #aaa;
-    transition: font-size 0.3s;
+    color: #ccc;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+nav {
+    transition: all 0.3s ease-in-out;
 }
 
 nav ul {
     list-style: none;
     display: flex;
-    gap: 20px;
+    gap: 25px;
     padding: 0;
-    margin: 0;
+    justify-content: center;
 }
 
 nav a {
     text-decoration: none;
     color: white;
-    font-size: 1.2em;
+    font-size: 1.1em;
     transition: 0.3s;
     position: relative;
 }
@@ -101,13 +101,24 @@ nav a:hover::after {
 
 .section {
     padding: 0;
-    padding-top: 80px;
+    padding-top: 120px;
     animation: fadeIn 1s ease-in-out;
 }
 
 @keyframes fadeIn {
     0% { opacity: 0; transform: translateY(20px); }
     100% { opacity: 1; transform: translateY(0); }
+}
+
+main {
+    margin-top: 180px;
+    padding-top: 75px;
+    position: relative;
+}
+
+h2 {
+    font-size: 2rem;
+    text-shadow: 0px 0px 10px cyan;
 }
 
 .skills-grid {
@@ -124,12 +135,6 @@ nav a:hover::after {
     text-transform: uppercase;
     transition: 0.3s;
     cursor: pointer;
-}
-
-main {
-    margin-top: 100px;
-    padding-top: 75px;
-    position: relative;
 }
 
 .skill:hover {
@@ -162,7 +167,7 @@ footer {
     margin-top: 20px;
 }
 
-/* 3D Neon Side Elements */
+/* Neon Sidebar */
 .side-bar {
     position: fixed;
     top: 0;
@@ -171,7 +176,6 @@ footer {
     background: cyan;
     box-shadow: 0 0 20px cyan;
     animation: neonGlow 1.5s infinite alternate;
-    z-index: 999;
 }
 
 @keyframes neonGlow {
@@ -187,34 +191,26 @@ footer {
     right: 10px;
 }
 
-/* Shrink header on scroll */
+/* Scroll-triggered style changes */
 header.shrink {
-    padding: 10px 30px;
-    background: rgba(0, 0, 0, 0.9);
-    box-shadow: 0 0 10px cyan;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 15px 30px;
 }
 
-header.shrink .brand {
+header.shrink .header-content {
     text-align: left;
-    transform: translateX(-30px);
+    align-items: flex-start;
 }
 
 header.shrink h1 {
     font-size: 1.5em;
 }
 
-header.shrink h2 {
-    font-size: 1em;
-    color: #ccc;
+header.shrink p {
+    font-size: 0.9em;
 }
 
-header.shrink nav {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    margin-top: 0;
-}
-
-header {
-    transition: padding 0.3s, background 0.3s, box-shadow 0.3s, font-size 0.3s;
+header.shrink nav ul {
+    justify-content: flex-end;
 }
