@@ -203,7 +203,7 @@ header.shrink {
 }
 
 header.shrink .header-content {
-    transform: translateX(-200px) scale(0.7);
+    transform: translateX(-10px) scale(1);
     text-align: left;
 }
 
