@@ -42,10 +42,29 @@ header {
     transition: all 0.3s ease-in-out;
 }
 
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.brand {
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+}
+
 h1 {
     font-size: 2em;
     color: cyan;
     text-shadow: 0 0 10px cyan;
+    transition: font-size 0.3s;
+}
+
+h2 {
+    font-size: 1.2em;
+    color: #aaa;
+    transition: font-size 0.3s;
 }
 
 nav ul {
@@ -53,6 +72,7 @@ nav ul {
     display: flex;
     gap: 20px;
     padding: 0;
+    margin: 0;
 }
 
 nav a {
@@ -90,11 +110,6 @@ nav a:hover::after {
     100% { opacity: 1; transform: translateY(0); }
 }
 
-h2 {
-    font-size: 2rem;
-    text-shadow: 0px 0px 10px cyan;
-}
-
 .skills-grid {
     display: flex;
     justify-content: center;
@@ -110,10 +125,11 @@ h2 {
     transition: 0.3s;
     cursor: pointer;
 }
-main{
-  margin-top: 100px;
-  padding-top: 75px;
-  position: relative;
+
+main {
+    margin-top: 100px;
+    padding-top: 75px;
+    position: relative;
 }
 
 .skill:hover {
@@ -155,6 +171,7 @@ footer {
     background: cyan;
     box-shadow: 0 0 20px cyan;
     animation: neonGlow 1.5s infinite alternate;
+    z-index: 999;
 }
 
 @keyframes neonGlow {
@@ -169,15 +186,35 @@ footer {
 .side-right {
     right: 10px;
 }
+
+/* Shrink header on scroll */
 header.shrink {
     padding: 10px 30px;
     background: rgba(0, 0, 0, 0.9);
     box-shadow: 0 0 10px cyan;
 }
 
+header.shrink .brand {
+    text-align: left;
+    transform: translateX(-30px);
+}
+
 header.shrink h1 {
     font-size: 1.5em;
 }
+
+header.shrink h2 {
+    font-size: 1em;
+    color: #ccc;
+}
+
+header.shrink nav {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    margin-top: 0;
+}
+
 header {
     transition: padding 0.3s, background 0.3s, box-shadow 0.3s, font-size 0.3s;
 }
