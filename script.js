@@ -1,6 +1,7 @@
 // Smooth Scrolling Effect for Navigation Links
 document.addEventListener("DOMContentLoaded", () => {
     const navLinks = document.querySelectorAll("nav ul li a");
+    const header = document.querySelector("header");
 
     navLinks.forEach(link => {
         link.addEventListener("click", (event) => {
@@ -15,5 +16,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             }
         });
+    });
+
+    // Shrink header on scroll
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+            header.classList.add("shrink");
+        } else {
+            header.classList.remove("shrink");
+        }
     });
 });
