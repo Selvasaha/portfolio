@@ -3,178 +3,186 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Selvaprakash P - Developer Portfolio</title>
+    <title id="pageTitle">Loading...</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-    <div class="header-content">
-        <h1>Selvaprakash P</h1>
-        <p>Developer</p>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader">
+            <div class="loader-ring"></div>
+            <div class="loader-text" id="loaderText">SP</div>
+        </div>
     </div>
-    <nav>
-        <ul>
-            <li><a href="#about">About Me</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <div class="theme-toggle-icon">
+            <div class="sun-icon">☀️</div>
+            <div class="moon-icon">🌙</div>
+        </div>
+    </button>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-container">
+            <a href="#hero" class="nav-logo" id="navLogo">SP</a>
+            <ul class="nav-menu" id="navMenu">
+                <!-- Navigation items will be dynamically generated -->
+            </ul>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
     </nav>
-</header>
-  <div class="side-bar side-left"></div>
-  <div class="side-bar side-right"></div>
 
-
-    <main>
-        <!-- About Section -->
-        <section id="about" class="section">
-            <div class="container">
-                <h2>About Me</h2>
-                <p>
-                    Hello, I am Selvaprakash P, a dedicated Developer with expertise in Python, HTML, CSS, JavaScript, ReactJS, Django, PHP, Java, and C. 
-                    I enjoy taking on challenging projects, staying updated with the latest technologies, and delivering robust applications. My goal is to write 
-                    clean and efficient code while creating user-friendly interfaces and scalable backend systems.
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-bg">
+            <div class="hero-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+            </div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title" id="heroTitle">
+                    <!-- Dynamic content will be loaded here -->
+                </h1>
+                <div class="hero-subtitle">
+                    <span class="typing-text" id="typingText"></span>
+                    <span class="cursor">|</span>
+                </div>
+                <p class="hero-description" id="heroDescription">
+                    <!-- Dynamic content will be loaded here -->
                 </p>
+                <div class="hero-buttons" id="heroButtons">
+                    <!-- Dynamic buttons will be loaded here -->
+                </div>
             </div>
-        </section>
-
-        <!-- Skills Section -->
-        <section id="skills" class="section">
-            <div class="container">
-                <h2>Skills</h2>
-                
-                <div class="skills-category">
-                    <h3>Programming Languages</h3>
-                    <div class="skills-grid">
-                        <span class="skill">Python</span>
-                        <span class="skill">JavaScript</span>
-                        <span class="skill">PHP</span>
-                        <span class="skill">Java</span>
-                        <span class="skill">C</span>
-                    </div>
-                </div>
-
-                <div class="skills-category">
-                    <h3>Web Development</h3>
-                    <h4>Frontend</h4>
-                    <div class="skills-grid">
-                        <span class="skill">HTML</span>
-                        <span class="skill">CSS</span>
-                        <span class="skill">JavaScript</span>
-                        <span class="skill">ReactJS</span>
-                    </div>
-                    <h4>Backend</h4>
-                    <div class="skills-grid">
-                        <span class="skill">Django</span>
-                        <span class="skill">PHP</span>
-                    </div>
-                </div>
-
-                <div class="skills-category">
-                    <h3>Database Management</h3>
-                    <div class="skills-grid">
-                        <span class="skill">MySQL</span>
-                    </div>
-                </div>
-
-                <div class="skills-category">
-                    <h3>Version Control & Tools</h3>
-                    <div class="skills-grid">
-                        <span class="skill">GitHub</span>
-                        <span class="skill">Sagemaker</span>
+            <div class="hero-image">
+                <div class="hero-avatar">
+                    <div class="avatar-ring"></div>
+                    <div class="avatar-content">
+                        <span class="avatar-text" id="avatarText">SP</span>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-arrow">↓</div>
+        </div>
+    </section>
 
-        <!-- Projects Section -->
-        <section id="projects" class="section">
-            <div class="container">
-                <h2>Projects</h2>
-
-                <div class="project">
-                    <h3>Digital Car Parking System</h3>
-                    <p>
-                        Developed a Digital Car Parking System using Python and OpenCV. The system detects empty parking spaces through real-time video analysis 
-                        and computer vision techniques, improving parking efficiency.
-                    </p>
-                </div>
-
-                <div class="project">
-                    <h3>E-Waste Management System</h3>
-                    <p>
-                        Contributed to an E-Waste Management System, analyzing electronic waste quality through data categorization. This project helps efficiently allocate 
-                        e-waste to recycling companies for responsible disposal.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Experience Section -->
-        <section id="experience" class="section">
-            <div class="container">
-                <h2>Experience</h2>
-                <div class="experience-item">
-                    <h3>Software Engineer Intern</h3>
-                    <p><strong>Company:</strong> Admindroid</p>
-                    <p><strong>Location:</strong> Chennai, Tamil Nadu, India</p>
-                    <p><strong>Period:</strong> April 2025 - Present</p>
-                    <p>
-                        Currently working as a Software Engineer Intern at Admindroid, where I contribute to developing innovative software solutions. My role involves working 
-                        with various technologies and collaborating with a team to build scalable applications.
-                    </p>
-                </div>
-                <div class="experience-item">
-                    <h3>Analyst</h3>
-                    <p><strong>Company:</strong> Objectways Technologies</p>
-                    <p><strong>Location:</strong> Coimbatore, Tamil Nadu, India</p>
-                    <p><strong>Period:</strong> May 2024 - Mar 2025</p>
-                    <p>
-                        As an Analyst, I annotate and analyze AI data, contributing to training and feeding AI systems. I work with text, images, video, and audio, ensuring 
-                        data quality for machine learning. My role also involves collaboration with teams to optimize system performance and data processing.
-                    </p>
-                </div>
-
-                <div class="experience-item">
-                    <h3>Data Scientist Intern</h3>
-                    <p><strong>Company:</strong> Digital Garage</p>
-                    <p><strong>Location:</strong> Coimbatore, Tamil Nadu, India</p>
-                    <p><strong>Period:</strong> Feb 2024 - Apr 2024</p>
-                    <p>
-                        During my internship at Digital Garage, I gained hands-on experience in data management, security, and analysis. I worked on projects focused 
-                        on data protection, integrity, and analytics.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="section">
-            <div class="container">
-                <h2>Contact</h2>
-                <p>Connect with me on <a href="https://www.linkedin.com/in/selvaprakash-p/" target="_blank">LinkedIn</a></p>
-                <p>Email: <a href="mailto:selvaprakash0124@gmail.com">selvaprakash0124@gmail.com</a></p>
-            </div>
-        </section>
-    </main>
-
-    <footer>
+    <!-- About Section -->
+    <section class="about section" id="about">
         <div class="container">
-            <p>&copy; 2025 Selvaprakash P. All rights reserved.</p>
+            <div class="section-header">
+                <h2 class="section-title">About Me</h2>
+                <p class="section-subtitle">Get to know more about my background and passion</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text" id="aboutText">
+                    <!-- Dynamic about content will be loaded here -->
+                </div>
+                <div class="about-stats" id="aboutStats">
+                    <!-- Dynamic stats will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills section" id="skills">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Skills & Technologies</h2>
+                <p class="section-subtitle">Technologies I work with</p>
+            </div>
+            <div class="skills-content" id="skillsContent">
+                <!-- Dynamic skills content will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="experience section" id="experience">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Experience</h2>
+                <p class="section-subtitle">My professional journey</p>
+            </div>
+            <div class="timeline" id="experienceTimeline">
+                <!-- Dynamic experience timeline will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects section" id="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Featured Projects</h2>
+                <p class="section-subtitle">Some of my notable work</p>
+            </div>
+            <div class="project-filters" id="projectFilters">
+                <!-- Dynamic project filters will be loaded here -->
+            </div>
+            <div class="projects-grid" id="projectsGrid">
+                <!-- Dynamic projects grid will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact section" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="section-subtitle">Let's work together on your next project</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info" id="contactInfo">
+                    <!-- Dynamic contact info will be loaded here -->
+                </div>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" id="name" name="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject" class="form-label">Subject</label>
+                        <input type="text" id="subject" name="subject" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" class="form-label">Message</label>
+                        <textarea id="message" name="message" class="form-control" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn--primary btn--full-width">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content" id="footerContent">
+                <!-- Dynamic footer content will be loaded here -->
+            </div>
         </div>
     </footer>
-    <script>
-    window.addEventListener("scroll", function () {
-        const header = document.querySelector("header");
-        if (window.scrollY > 50) {
-            header.classList.add("shrink");
-        } else {
-            header.classList.remove("shrink");
-        }
-    });
-</script>
 
-    <script src="script.js"></script>
+    <script type="module" src="js/app.js"></script>
 </body>
 </html>
