@@ -1914,3 +1914,52 @@ html {
         padding: var(--space-16);
     }
 }
+
+/* Full-screen center */
+.error-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: var(--color-background);
+}
+
+/* Box */
+.error-box {
+  background: var(--color-surface);
+  padding: 2rem;
+  border: 2px solid var(--color-border);
+  border-radius: 12px;
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  color: var(--color-text);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Heading */
+.error-box h1 {
+  color: var(--color-error);
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+/* Paragraph */
+.error-box p {
+  margin-bottom: 1.5rem;
+  color: var(--color-text-secondary);
+}
+
+/* Button */
+.error-box .btn--primary {
+  background: var(--color-primary);
+  color: var(--color-btn-primary-text);
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.error-box .btn--primary:hover {
+  background: var(--color-primary-hover);
+}
