@@ -4,7 +4,7 @@
 // Fully data-driven content rendering with error handling and validation
 
 import { portfolioData } from './data.js';
-import { utils } from './utils.js';
+import { utils, getSvgIcon  } from './utils.js';
 
 export class ContentRenderer {
     constructor() {
@@ -350,14 +350,22 @@ export class ContentRenderer {
         if (!footerContent || !this.data.footer) return;
 
         footerContent.innerHTML = `
-            <p>&copy; ${this.escapeHtml(this.data.footer.copyright)}</p>
-            <div class="social-links">
-                ${this.data.footer.socialLinks.map(link => 
-                    `<a href="${this.escapeHtml(link.url)}" target="_blank" class="social-link">${this.escapeHtml(link.name)}</a>`
-                ).join('')}
-            </div>
-        `;
+        <p>&copy; ${this.escapeHtml(this.data.footer.copyright)}</p>
+        <div class="social-links">
+            ${this.data.footer.socialLinks.map(link => {
+                const name = this.escapeHtml(link.name);
+                const url  = this.escapeHtml(link.url);
+                const icon = getSvgIcon(link.name);
+                return `
+                    <a href="${url}" target="_blank" class="social-link" aria-label="${name}">
+                        ${icon}
+                        <span class="sr-only">${name}</span>
+                    </a>
+                `;
+            }).join('')}
+        </div>`;
     }
+
 
     renderErrorFallback() {
         const mainContent = utils.getElement('main') || document.body;
