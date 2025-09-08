@@ -19,7 +19,7 @@
     </div>
 
     <!-- Theme Toggle Button -->
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+    <button class="theme-toggle" id="themeToggle">
         <div class="theme-toggle-icon">
             <div class="sun-icon">☀️</div>
             <div class="moon-icon">🌙</div>
@@ -84,8 +84,8 @@
     <section class="about section" id="about">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">About Me</h2>
-                <p class="section-subtitle">Get to know more about my background and passion</p>
+                <h2 class="section-title" id="aboutTitle"><!-- Dynamic --></h2>
+                <p class="section-subtitle" id="aboutSubtitle"><!-- Dynamic --></p>
             </div>
             <div class="about-content">
                 <div class="about-text" id="aboutText">
@@ -102,8 +102,8 @@
     <section class="skills section" id="skills">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Skills & Technologies</h2>
-                <p class="section-subtitle">Technologies I work with</p>
+                <h2 class="section-title" id="skillsTitle"><!-- Dynamic --></h2>
+                <p class="section-subtitle" id="skillsSubtitle"><!-- Dynamic --></p>
             </div>
             <div class="skills-content" id="skillsContent">
                 <!-- Dynamic skills content will be loaded here -->
@@ -115,8 +115,8 @@
     <section class="experience section" id="experience">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Experience</h2>
-                <p class="section-subtitle">My professional journey</p>
+                <h2 class="section-title" id="experienceTitle"><!-- Dynamic --></h2>
+                <p class="section-subtitle" id="experienceSubtitle"><!-- Dynamic --></p>
             </div>
             <div class="timeline" id="experienceTimeline">
                 <!-- Dynamic experience timeline will be loaded here -->
@@ -128,8 +128,8 @@
     <section class="projects section" id="projects">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Featured Projects</h2>
-                <p class="section-subtitle">Some of my notable work</p>
+                <h2 class="section-title" id="projectsTitle"><!-- Dynamic --></h2>
+                <p class="section-subtitle" id="projectsSubtitle"><!-- Dynamic --></p>
             </div>
             <div class="project-filters" id="projectFilters">
                 <!-- Dynamic project filters will be loaded here -->
@@ -144,31 +144,15 @@
     <section class="contact section" id="contact">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Get In Touch</h2>
-                <p class="section-subtitle">Let's work together on your next project</p>
+                <h2 class="section-title" id="contactTitle"><!-- Dynamic --></h2>
+                <p class="section-subtitle" id="contactSubtitle"><!-- Dynamic --></p>
             </div>
             <div class="contact-content">
                 <div class="contact-info" id="contactInfo">
                     <!-- Dynamic contact info will be loaded here -->
                 </div>
                 <form class="contact-form" id="contactForm">
-                    <div class="form-group">
-                        <label for="name" class="form-label">Name</label>
-                        <input type="text" id="name" name="name" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" id="email" name="email" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="subject" class="form-label">Subject</label>
-                        <input type="text" id="subject" name="subject" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message" class="form-label">Message</label>
-                        <textarea id="message" name="message" class="form-control" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn--primary btn--full-width">Send Message</button>
+                    <!-- All form elements will be dynamically generated -->
                 </form>
             </div>
         </div>
