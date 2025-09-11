@@ -1,10 +1,10 @@
 // ========================================
-// ENHANCED CONTENT RENDERER MODULE
+// ENHANCED CONTENT RENDERER MODULE - UPDATED FOR PROFILE IMAGES
 // ========================================
 // Fully data-driven content rendering with error handling and validation
 
 import { portfolioData } from './data.js';
-import { utils, getSvgIcon  } from './utils.js';
+import { utils, getSvgIcon } from './utils.js';
 
 export class ContentRenderer {
     constructor() {
@@ -18,11 +18,9 @@ export class ContentRenderer {
         if (!this.data) {
             throw new Error('Portfolio data is missing');
         }
-        
         if (!this.data.personalInfo) {
             console.warn('Personal info missing from portfolio data');
         }
-        
         if (!this.data.sections) {
             console.warn('Sections configuration missing from portfolio data');
         }
@@ -41,7 +39,7 @@ export class ContentRenderer {
             this.renderContact();
             this.renderContactForm();
             this.renderFooter();
-            this.updateInitials();
+            this.updateProfileImages(); // Updated method name
             this.updateThemeLabels();
         } catch (error) {
             console.error('Error rendering content:', error);
@@ -56,18 +54,89 @@ export class ContentRenderer {
         }
     }
 
-    updateInitials() {
+    // UPDATED: Replace updateInitials with updateProfileImages
+    updateProfileImages() {
         const elements = {
-            loaderText: utils.getElement('#loaderText'),
-            navLogo: utils.getElement('#navLogo'),
-            avatarText: utils.getElement('#avatarText')
+            loaderImage: utils.getElement('#loaderImage .loader-img'),
+            navLogoImage: utils.getElement('#navLogo .nav-logo-img'),
+            avatarImage: utils.getElement('#avatarImage')
         };
         
-        const initials = this.data.personalInfo?.initials;
+        const profileImageSrc = this.data.personalInfo?.profileImage || 'profile-image.jpg';
+        const initials = this.data.personalInfo?.initials || 'SP';
+        const name = this.data.personalInfo?.name || 'Profile';
         
-        Object.values(elements).forEach(element => {
-            if (element) element.textContent = initials;
+        Object.entries(elements).forEach(([key, element]) => {
+            if (element) {
+                // Set image source and alt text
+                element.src = profileImageSrc;
+                element.alt = `${name} - Profile Picture`;
+                
+                // Add loading state handling
+                element.addEventListener('load', () => {
+                    element.classList.add('loaded');
+                    console.log(`✅ Profile image loaded successfully for ${key}`);
+                });
+                
+                // Add error handling - fallback to initials
+                element.addEventListener('error', () => {
+                    console.warn(`⚠️ Profile image failed to load for ${key}, showing initials fallback`);
+                    const fallbackElement = this.createInitialsFallback(initials, key);
+                    element.parentElement.appendChild(fallbackElement);
+                    element.style.display = 'none';
+                });
+                
+                // Set data attribute for fallback
+                element.parentElement.setAttribute('data-initials', initials);
+            }
         });
+    }
+    
+    // NEW: Create fallback initials element when image fails
+    createInitialsFallback(initials, elementType) {
+        const fallback = utils.createElement('div', {
+            className: `image-fallback ${elementType}-fallback`,
+            textContent: initials
+        });
+        
+        // Apply appropriate sizing based on element type
+        const sizeMap = {
+            loaderImage: { 
+                width: '60px', 
+                height: '60px', 
+                fontSize: 'var(--font-size-xl)',
+                borderRadius: '50%'
+            },
+            navLogoImage: { 
+                width: '45px', 
+                height: '45px', 
+                fontSize: 'var(--font-size-lg)',
+                borderRadius: '50%'
+            },
+            avatarImage: { 
+                width: '184px', 
+                height: '184px', 
+                fontSize: '4rem',
+                borderRadius: '50%'
+            }
+        };
+        
+        const size = sizeMap[elementType] || sizeMap.avatarImage;
+        Object.assign(fallback.style, {
+            width: size.width,
+            height: size.height,
+            fontSize: size.fontSize,
+            borderRadius: size.borderRadius,
+            background: 'var(--color-secondary)',
+            border: '2px solid var(--color-primary)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: 'var(--color-primary)',
+            fontWeight: 'var(--font-weight-bold)'
+        });
+        
+        return fallback;
     }
 
     updateThemeLabels() {
@@ -79,7 +148,7 @@ export class ContentRenderer {
 
     renderSectionHeaders() {
         if (!this.data.sections) return;
-
+        
         const headerMap = {
             'aboutTitle': this.data.sections.about?.title,
             'aboutSubtitle': this.data.sections.about?.subtitle,
@@ -105,49 +174,40 @@ export class ContentRenderer {
         const navMenu = utils.getElement('#navMenu');
         if (!navMenu || !this.data.navigation) return;
 
-        navMenu.innerHTML = this.data.navigation.map(item => 
-            `<li><a href="${this.escapeHtml(item.href)}" class="nav-link">${this.escapeHtml(item.name)}</a></li>`
-        ).join('');
+        navMenu.innerHTML = this.data.navigation.map(item => `
+            <li><a href="${item.href}" class="nav-link">${this.escapeHtml(item.name)}</a></li>
+        `).join('');
     }
 
     renderHero() {
-        this.renderHeroTitle();
-        this.renderHeroDescription();
+        this.renderHeroContent();
         this.renderHeroButtons();
     }
 
-    renderHeroTitle() {
+    renderHeroContent() {
         const heroTitle = utils.getElement('#heroTitle');
-        if (!heroTitle) return;
-
-        const greeting = this.data.sections?.hero?.greeting || 'Hi, I\'m';
-        const name = this.data.personalInfo?.name || 'Developer';
-        
-        heroTitle.innerHTML = `${this.escapeHtml(greeting)} <span class="highlight">${this.escapeHtml(name)}</span>`;
-    }
-
-    renderHeroDescription() {
         const heroDescription = utils.getElement('#heroDescription');
-        if (!heroDescription) return;
 
-        const bio = this.data.personalInfo?.bio || 'Passionate software developer creating innovative solutions.';
-        const shortDescription = bio.split('.')[0] + '.';
-        
-        heroDescription.textContent = shortDescription;
+        if (heroTitle && this.data.personalInfo && this.data.sections?.hero) {
+            const greeting = this.data.sections.hero.greeting || 'Hi, I\'m';
+            const name = this.data.personalInfo.name;
+            heroTitle.innerHTML = `${greeting} <span class="highlight">${this.escapeHtml(name)}</span>`;
+        }
+
+        if (heroDescription && this.data.personalInfo) {
+            heroDescription.textContent = this.data.personalInfo.bio || this.data.personalInfo.subtitle;
+        }
     }
 
     renderHeroButtons() {
         const heroButtons = utils.getElement('#heroButtons');
-        if (!heroButtons) return;
+        if (!heroButtons || !this.data.sections?.hero?.buttons) return;
 
-        const buttons = this.data.sections?.hero?.buttons || [
-            { text: 'View My Work', href: '#projects', class: 'btn--primary' },
-            { text: 'Get In Touch', href: '#contact', class: 'btn--outline' }
-        ];
-
-        heroButtons.innerHTML = buttons.map(button => 
-            `<a href="${this.escapeHtml(button.href)}" class="btn ${this.escapeHtml(button.class)}">${this.escapeHtml(button.text)}</a>`
-        ).join('');
+        heroButtons.innerHTML = this.data.sections.hero.buttons.map(button => `
+            <a href="${button.href}" class="btn ${button.class}">
+                ${this.escapeHtml(button.text)}
+            </a>
+        `).join('');
     }
 
     renderAbout() {
@@ -159,9 +219,9 @@ export class ContentRenderer {
         const aboutText = utils.getElement('#aboutText');
         if (!aboutText) return;
 
-        const content = this.data.sections?.about?.content;
-        if (content && content.paragraphs) {
-            aboutText.innerHTML = content.paragraphs.map(paragraph => 
+        if (this.data.sections?.about?.content?.paragraphs) {
+            // Use structured content if available
+            aboutText.innerHTML = this.data.sections.about.content.paragraphs.map(paragraph => 
                 `<p class="about-description">${this.escapeHtml(paragraph)}</p>`
             ).join('');
         } else {
@@ -184,7 +244,7 @@ export class ContentRenderer {
 
         aboutStats.innerHTML = this.data.aboutStats.map(stat => `
             <div class="stat">
-                <div class="stat-number" data-count="${this.escapeHtml(stat.number.replace('+', ''))}">${this.escapeHtml(stat.number)}</div>
+                <div class="stat-number" data-count="${stat.number.replace(/\D/g, '')}">${this.escapeHtml(stat.number)}</div>
                 <div class="stat-label">${this.escapeHtml(stat.label)}</div>
             </div>
         `).join('');
@@ -202,10 +262,10 @@ export class ContentRenderer {
                         <div class="skill-item">
                             <div class="skill-info">
                                 <span class="skill-name">${this.escapeHtml(skill.name)}</span>
-                                <span class="skill-percentage">${this.escapeHtml(skill.level)}%</span>
+                                <span class="skill-percentage">${skill.level}%</span>
                             </div>
                             <div class="skill-bar">
-                                <div class="skill-progress" data-percentage="${this.escapeHtml(skill.level)}"></div>
+                                <div class="skill-progress" data-percentage="${skill.level}"></div>
                             </div>
                         </div>
                     `).join('')}
@@ -215,24 +275,24 @@ export class ContentRenderer {
     }
 
     renderExperience() {
-        const experienceTimeline = utils.getElement('#experienceTimeline');
-        if (!experienceTimeline || !this.data.experience) return;
+        const timeline = utils.getElement('#experienceTimeline');
+        if (!timeline || !this.data.experience) return;
 
-        experienceTimeline.innerHTML = this.data.experience.map((exp, index) => `
-            <div class="timeline-item" data-aos="fade-up" data-aos-delay="${index * 200}">
+        timeline.innerHTML = this.data.experience.map((job, index) => `
+            <div class="timeline-item" style="animation-delay: ${index * 0.2}s">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
                     <div class="timeline-header">
-                        <h3 class="job-title">${this.escapeHtml(exp.title)}</h3>
-                        <div class="company">${this.escapeHtml(exp.company)}</div>
-                        <div class="period">${this.escapeHtml(exp.startDate)} - ${this.escapeHtml(exp.endDate)}</div>
-                        <div class="location">${this.escapeHtml(exp.location)}</div>
+                        <h3 class="job-title">${this.escapeHtml(job.title)}</h3>
+                        <div class="company">${this.escapeHtml(job.company)}</div>
+                        <div class="period">${this.escapeHtml(job.startDate)} - ${this.escapeHtml(job.endDate)}</div>
+                        <div class="location">${this.escapeHtml(job.location)}</div>
                     </div>
                     <ul class="job-description">
-                        ${exp.description.map(desc => `<li>${this.escapeHtml(desc)}</li>`).join('')}
+                        ${job.description.map(item => `<li>${this.escapeHtml(item)}</li>`).join('')}
                     </ul>
                     <div class="tech-tags">
-                        ${exp.technologies.map(tech => `<span class="tech-tag">${this.escapeHtml(tech)}</span>`).join('')}
+                        ${job.technologies.map(tech => `<span class="tech-tag">${this.escapeHtml(tech)}</span>`).join('')}
                     </div>
                 </div>
             </div>
@@ -241,31 +301,26 @@ export class ContentRenderer {
 
     renderProjects() {
         this.renderProjectFilters();
-        this.renderProjectGrid();
+        this.renderProjectsGrid();
     }
 
     renderProjectFilters() {
         const projectFilters = utils.getElement('#projectFilters');
-        if (!projectFilters) return;
+        if (!projectFilters || !this.data.sections?.projects?.filterLabels) return;
 
-        const filterLabels = this.data.sections?.projects?.filterLabels || {};
-        const allTechnologies = utils.getAllTechnologies();
-        
-        projectFilters.innerHTML = `
-            <button class="filter-btn active" data-filter="all">${this.escapeHtml(filterLabels.all || 'All')}</button>
-            ${allTechnologies.map(tech => {
-                const label = filterLabels[tech.toLowerCase()] || tech;
-                return `<button class="filter-btn" data-filter="${this.escapeHtml(tech.toLowerCase())}">${this.escapeHtml(label)}</button>`;
-            }).join('')}
-        `;
+        projectFilters.innerHTML = Object.entries(this.data.sections.projects.filterLabels).map(([key, label]) => `
+            <button class="filter-btn ${key === 'all' ? 'active' : ''}" data-filter="${key}">
+                ${this.escapeHtml(label)}
+            </button>
+        `).join('');
     }
 
-    renderProjectGrid() {
+    renderProjectsGrid() {
         const projectsGrid = utils.getElement('#projectsGrid');
         if (!projectsGrid || !this.data.projects) return;
 
-        projectsGrid.innerHTML = this.data.projects.map((project, index) => `
-            <div class="project-card" data-aos="fade-up" data-aos-delay="${index * 200}" data-technologies="${project.technologies.map(t => t.toLowerCase()).join(' ')}">
+        projectsGrid.innerHTML = this.data.projects.map(project => `
+            <div class="project-card" data-technologies="${project.technologies.map(t => t.toLowerCase()).join(' ')}">
                 <div class="project-header">
                     <h3 class="project-title">${this.escapeHtml(project.title)}</h3>
                     <div class="project-tech">
@@ -273,46 +328,49 @@ export class ContentRenderer {
                     </div>
                 </div>
                 <p class="project-description">${this.escapeHtml(project.description)}</p>
-                
                 ${project.features ? `
                     <div class="project-features">
-                        <h4>Key Features:</h4>
+                        <h4>Key Features</h4>
                         <ul>
                             ${project.features.map(feature => `<li>${this.escapeHtml(feature)}</li>`).join('')}
                         </ul>
                     </div>
                 ` : ''}
-                
                 ${project.challenges ? `
                     <div class="project-challenges">
-                        <h4>Challenges:</h4>
+                        <h4>Challenges Solved</h4>
                         <ul>
                             ${project.challenges.map(challenge => `<li>${this.escapeHtml(challenge)}</li>`).join('')}
                         </ul>
                     </div>
                 ` : ''}
-                
-                <div class="project-links">
-                    ${project.github ? `<a href="${this.escapeHtml(project.github)}" target="_blank" class="project-link project-link--primary">GitHub</a>` : ''}
-                    ${project.demo ? `<a href="${this.escapeHtml(project.demo)}" target="_blank" class="project-link project-link--secondary">Live Demo</a>` : ''}
-                </div>
+                ${project.demo ? `
+                    <div class="project-links">
+                        <a href="${project.demo}" class="project-link project-link--primary" target="_blank" rel="noopener noreferrer">
+                            View Demo
+                        </a>
+                    </div>
+                ` : ''}
             </div>
         `).join('');
     }
 
     renderContact() {
         const contactInfo = utils.getElement('#contactInfo');
-        if (!contactInfo || !this.data.contact) return;
+        if (!contactInfo || !this.data.contact?.items) return;
 
         contactInfo.innerHTML = this.data.contact.items.map(item => `
             <div class="contact-item">
                 <div class="contact-icon">${item.icon}</div>
                 <div class="contact-details">
-                    <h4>${this.escapeHtml(item.title)}</h4>
-                    ${item.link ? 
-                        `<a href="${this.escapeHtml(item.link)}" ${item.link.startsWith('http') ? 'target="_blank"' : ''}>${this.escapeHtml(item.value)}</a>` :
-                        `<span>${this.escapeHtml(item.value)}</span>`
-                    }
+                    <h4 class="contact-title">${this.escapeHtml(item.title)}</h4>
+                    ${item.link ? `
+                        <a href="${item.link}" class="contact-value" ${item.link.startsWith('mailto:') || item.link.startsWith('tel:') ? '' : 'target="_blank" rel="noopener noreferrer"'}>
+                            ${this.escapeHtml(item.value)}
+                        </a>
+                    ` : `
+                        <span class="contact-value">${this.escapeHtml(item.value)}</span>
+                    `}
                 </div>
             </div>
         `).join('');
@@ -320,28 +378,43 @@ export class ContentRenderer {
 
     renderContactForm() {
         const contactForm = utils.getElement('#contactForm');
-        if (!contactForm) return;
+        if (!contactForm || !this.data.contactForm) return;
 
-        const formConfig = this.data.contactForm;
-        if (!formConfig) {
-            console.warn('Contact form configuration missing');
-            return;
-        }
-
-        const fields = formConfig.fields || {};
-        const submitButton = formConfig.submitButton || { text: 'Send Message', class: 'btn--primary btn--full-width' };
+        const fields = this.data.contactForm.fields || {};
+        const submitBtn = this.data.contactForm.submitButton || {};
 
         contactForm.innerHTML = `
-            ${Object.entries(fields).map(([name, field]) => `
+            ${Object.entries(fields).map(([fieldName, field]) => `
                 <div class="form-group">
-                    <label for="${name}" class="form-label">${this.escapeHtml(field.label)}</label>
-                    ${field.type === 'textarea' 
-                        ? `<textarea id="${name}" name="${name}" class="form-control" rows="${field.rows || 5}" placeholder="${this.escapeHtml(field.placeholder || '')}" ${field.required ? 'required' : ''}></textarea>`
-                        : `<input type="${field.type}" id="${name}" name="${name}" class="form-control" placeholder="${this.escapeHtml(field.placeholder || '')}" ${field.required ? 'required' : ''}>`
-                    }
+                    <label for="${fieldName}" class="form-label">
+                        ${this.escapeHtml(field.label)}${field.required ? ' *' : ''}
+                    </label>
+                    ${field.type === 'textarea' ? `
+                        <textarea 
+                            id="${fieldName}" 
+                            name="${fieldName}" 
+                            class="form-control" 
+                            placeholder="${this.escapeHtml(field.placeholder || '')}"
+                            ${field.required ? 'required' : ''}
+                            ${field.rows ? `rows="${field.rows}"` : ''}
+                            maxlength="1000"
+                        ></textarea>
+                    ` : `
+                        <input 
+                            type="${field.type || 'text'}" 
+                            id="${fieldName}" 
+                            name="${fieldName}" 
+                            class="form-control" 
+                            placeholder="${this.escapeHtml(field.placeholder || '')}"
+                            ${field.required ? 'required' : ''}
+                            maxlength="100"
+                        />
+                    `}
                 </div>
             `).join('')}
-            <button type="submit" class="btn ${submitButton.class}" data-original-text="${this.escapeHtml(submitButton.text)}" data-loading-text="${this.escapeHtml(submitButton.loadingText || 'Sending...')}">${this.escapeHtml(submitButton.text)}</button>
+            <button type="submit" class="btn ${submitBtn.class || 'btn--primary btn--full-width'}">
+                ${this.escapeHtml(submitBtn.text || 'Send Message')}
+            </button>
         `;
     }
 
@@ -366,66 +439,48 @@ export class ContentRenderer {
         </div>`;
     }
 
-
     renderErrorFallback() {
         const mainContent = utils.getElement('main') || document.body;
         document.title = "Error";
         mainContent.innerHTML = `
-        <div class="error-container">
-            <div class="error-box">
-                <h1>Sorry, something went wrong</h1>
-                <p>We're having trouble loading the portfolio content. Please refresh the page.</p>
-                <button onclick="location.reload()" class="btn btn--primary">Refresh Page</button>
+            <div style="display: flex; align-items: center; justify-content: center; height: 100vh; text-align: center;">
+                <div>
+                    <h1>Oops! Something went wrong</h1>
+                    <p>We're having trouble loading the portfolio content. Please refresh the page.</p>
+                    <button onclick="window.location.reload()" class="btn btn--primary">Refresh Page</button>
+                </div>
             </div>
-        </div>`;
+        `;
     }
 
-    // Security helper to prevent XSS
+    // Utility method for HTML escaping
     escapeHtml(text) {
         if (typeof text !== 'string') return text;
-        const div = document.createElement('div');
-        div.textContent = text;
-        return div.innerHTML;
-    }
-
-    // Update data and re-render
-    updateData(newData) {
-        this.data = { ...this.data, ...newData };
-        this.validateData();
-        this.init();
-    }
-
-    // Render specific section
-    renderSection(sectionName) {
-        const renderMethods = {
-            navigation: 'renderNavigation',
-            hero: 'renderHero',
-            about: 'renderAbout',
-            skills: 'renderSkills',
-            experience: 'renderExperience',
-            projects: 'renderProjects',
-            contact: 'renderContact',
-            contactForm: 'renderContactForm',
-            footer: 'renderFooter',
-            sectionHeaders: 'renderSectionHeaders'
+        const map = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#039;'
         };
+        return text.replace(/[&<>"']/g, m => map[m]);
+    }
 
-        if (renderMethods[sectionName] && typeof this[renderMethods[sectionName]] === 'function') {
-            try {
-                this[renderMethods[sectionName]]();
-            } catch (error) {
-                console.error(`Error rendering ${sectionName}:`, error);
-            }
+    // Public methods for dynamic updates
+    updatePersonalInfo(newInfo) {
+        this.data.personalInfo = { ...this.data.personalInfo, ...newInfo };
+        this.updateProfileImages();
+        this.renderHero();
+    }
+
+    updateProfileImage(newImagePath) {
+        if (this.data.personalInfo) {
+            this.data.personalInfo.profileImage = newImagePath;
+            this.updateProfileImages();
         }
     }
 
-    // Get current data
-    getData() {
-        return this.data;
-    }
-
-    // Check if data is valid
-    isDataValid() {
-        return !!(this.data && this.data.personalInfo && this.data.sections);
+    refreshContent() {
+        this.init();
     }
 }
