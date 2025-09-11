@@ -1,19 +1,21 @@
 // ========================================
-// UPDATED DATA.JS - Required for Enhanced Renderer
+// UPDATED DATA.JS - WITH PROFILE IMAGE SUPPORT
 // ========================================
 // This data structure works with the enhanced renderer
 
-const newLocal = {
+const portfolioData = {
     personalInfo: {
         name: "Selvaprakash P",
         title: "Software Developer",
         subtitle: "Full Stack Developer & Problem Solver",
-        bio: "I am a Software Developer passionate about creating innovative solutions. I have strong experience in both frontend and backend development, particularly in web technologies such as HTML, CSS, JavaScript, ReactJS, Django, and PHP. I also have experience in AI data annotation, which helps me understand the underlying data that drives machine learning models. I am committed to writing clean, efficient, and maintainable code and constantly strive to improve my skills and knowledge.",
+        bio: "I'm a Software Developer passionate about turning creative ideas into real, efficient solutions. I build across the stack, working with web tech like HTML, CSS, JavaScript, ReactJS, Django, and PHP to craft smooth, user-friendly apps. Ive also worked with AI data annotation, giving me a deeper understanding of how data drives machine learning systems. Clean, maintainable code is my mantra, and I'm always learning new tricks to stay sharp in the fast-moving tech world. 🚀",
         location: "Chennai, Tamil Nadu, India",
         email: "selvaprakash0124@gmail.com",
         linkedin: "https://www.linkedin.com/in/selvaprakash-p/",
         github: "https://github.com/Selvasaha",
-        initials: "SP"
+        initials: "SP",
+        // NEW: Profile image configuration
+        // profileImage: "profile-image.jpg"  // 👈 PUT YOUR IMAGE HERE - same folder as index.html
     },
 
     typingTexts: [
@@ -34,7 +36,7 @@ const newLocal = {
         { name: "Contact", href: "#contact" }
     ],
 
-    // ✨ NEW: Dynamic section configuration
+    // ✨ Dynamic section configuration
     sections: {
         hero: {
             greeting: "Hi, I'm",
@@ -79,7 +81,7 @@ const newLocal = {
         }
     },
 
-    // ✨ NEW: Complete contact form configuration
+    // ✨ Complete contact form configuration
     contactForm: {
         fields: {
             name: {
@@ -115,7 +117,7 @@ const newLocal = {
         }
     },
 
-    // ✨ NEW: UI text and labels
+    // ✨ UI text and labels
     ui: {
         theme: {
             toggleLabel: "Toggle dark/light theme"
@@ -270,4 +272,5 @@ const newLocal = {
         ]
     }
 };
-export const portfolioData = newLocal;
+
+export { portfolioData };
